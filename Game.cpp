@@ -1,11 +1,10 @@
 #include "Game.h"
-#include "TextureManager.h"
+#include "GameObject.h"
 
 
-SDL_Texture* PlayerText;
-SDL_Rect srcR, destR;
-int cnt;
+GameObject* player;
 
+SDL_Renderer* Game::renderer = nullptr;
 
 Game::Game()
 {}
@@ -40,7 +39,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
         isRunning = true;
     }
-   PlayerText = TextureManager::LoadTexture("Assets/SonicTestSprite.png",renderer);
+    player = new GameObject("Assets/SonicTestSprite.png",0.0,0.0);
 }
 
 void Game::EventManager()
@@ -59,26 +58,13 @@ void Game::EventManager()
 
 void Game::update()
 {
-
-    long last = 0;
-    float deltaTime = 0.0;	
-    long now = SDL_GetTicks();
-    //deltatime is in seconds
-    if (now > last) {
-	    deltaTime = ((float)(now - last)) / 1000;
-	    last = now;
-    }
-    cnt ++;
-    //std::cout<<deltaTime<<std::endl;
-    destR.h=170;
-    destR.w=170;
-    destR.x=100*deltaTime;
+    player->Update();
 }
 
 void Game::render()
 {
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, PlayerText, NULL, &destR);
+    player-> Render();
     SDL_RenderPresent(renderer);
 }
 
