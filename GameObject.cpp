@@ -1,5 +1,12 @@
 #include "GameObject.h"
-#include "TextureManager.h"
+
+DeltaT* delta;
+double deltaTime;
+float xpos;
+float ypos;
+
+SDL_Texture* ObjectTexture;
+SDL_Rect srcRect, destRect;
 
 GameObject::GameObject(const char* texturesheet, float x, float y)
 {
@@ -8,16 +15,10 @@ GameObject::GameObject(const char* texturesheet, float x, float y)
     ypos = y;
 }
 
-void GameObject::Update()
+void Game::update()
 {
-    long last = 0;
-    float deltaTime = 0.0;	
-    long now = SDL_GetTicks();
-    //deltatime is in seconds
-    if (now > last) {
-        deltaTime = ((float)(now - last)) / 1000;
-        last = now;
-   }
+    delta = new DeltaT(deltaTime);
+    
 
     xpos++*deltaTime;
     ypos++*deltaTime;
@@ -28,13 +29,15 @@ void GameObject::Update()
     srcRect.x= 0;
     srcRect.y = 0;
 
-    destRect.x = xpos/100;
-    destRect.y = ypos/100;
+    destRect.x = xpos;
+    destRect.y = ypos;
     destRect.h = srcRect.h /4;
     destRect.w = srcRect.w /4;
 }
 
-void GameObject::Render()
+void Game::render()
 {
+    SDL_RenderClear(renderer);
     SDL_RenderCopy(Game::renderer, ObjectTexture, &srcRect, &destRect);
+    SDL_RenderPresent(renderer);
 }

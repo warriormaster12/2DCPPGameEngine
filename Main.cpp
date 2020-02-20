@@ -1,6 +1,7 @@
- #include "Game.h"
+#include "Game.h"
  
 Game *game = nullptr;
+
 
 int main(int argc, char *argv[])
  {
@@ -11,6 +12,7 @@ int main(int argc, char *argv[])
         game->EventManager();
         game->update();
         game->render();
+        
 
     }
     

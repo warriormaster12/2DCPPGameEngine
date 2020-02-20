@@ -1,5 +1,6 @@
 #include "Game.h"
-#include "GameObject.h"
+
+
 
 
 GameObject* player;
@@ -56,17 +57,6 @@ void Game::EventManager()
     }
 }
 
-void Game::update()
-{
-    player->Update();
-}
-
-void Game::render()
-{
-    SDL_RenderClear(renderer);
-    player-> Render();
-    SDL_RenderPresent(renderer);
-}
 
 void Game::clean()
 {
