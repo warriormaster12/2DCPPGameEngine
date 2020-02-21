@@ -1,18 +1,14 @@
 #include "GameObject.h"
 
     
-GameObject::GameObject()
+GameObject::GameObject(const char* texturesheet, float x, float y)
 {
-    Ready();
-    ObjectTexture = TextureManager::LoadTexture(TextureDirectory);
+    ObjectTexture = TextureManager::LoadTexture(texturesheet);
+    xpos = x;
+    ypos = y;
 }
 
-void GameObject::Ready()
-{
-    TextureDirectory = "Assets/SonicTestSprite.png";
-    xpos = 0.0;
-    ypos = 0.0;
-}
+
 void GameObject::Process(double delta)
 {
     xpos++*delta;

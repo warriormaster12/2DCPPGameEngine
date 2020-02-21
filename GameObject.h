@@ -6,7 +6,7 @@
 class GameObject
 {
 public:
-    GameObject();
+    GameObject(const char* texturesheet, float x, float y);
    ~GameObject();
    void Process(double delta);
    void ObjectRender();

@@ -5,7 +5,7 @@ GameObject* player;
 
 void World::create_world()
 {
-    player = new GameObject();
+    player = new GameObject("Assets/SonicTestSprite.png", 50, 50);
 }
 
 void World::render_world()
