@@ -1,13 +1,13 @@
 #include "GameObject.h"
 
-DeltaT* delta;
-double deltaTime;
 float xpos;
 float ypos;
-
 SDL_Texture* ObjectTexture;
 SDL_Rect srcRect, destRect;
 
+
+
+    
 GameObject::GameObject(const char* texturesheet, float x, float y)
 {
     ObjectTexture = TextureManager::LoadTexture(texturesheet);
@@ -15,15 +15,12 @@ GameObject::GameObject(const char* texturesheet, float x, float y)
     ypos = y;
 }
 
-void Game::update()
+void GameObject::Process(double delta)
 {
-    delta = new DeltaT(deltaTime);
-    
+    xpos++*delta;
+    ypos++*delta;
 
-    xpos++*deltaTime;
-    ypos++*deltaTime;
-
-    //set image's proper height and width otherwise it won't work
+    //set image's proper height and width otherwise sprite won't be visible
     srcRect.h = 1170; 
     srcRect.w = 870;
     srcRect.x= 0;
@@ -35,9 +32,7 @@ void Game::update()
     destRect.w = srcRect.w /4;
 }
 
-void Game::render()
+void GameObject::ObjectRender()
 {
-    SDL_RenderClear(renderer);
     SDL_RenderCopy(Game::renderer, ObjectTexture, &srcRect, &destRect);
-    SDL_RenderPresent(renderer);
 }

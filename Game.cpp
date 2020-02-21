@@ -2,10 +2,10 @@
 
 
 
-
 GameObject* player;
 
 SDL_Renderer* Game::renderer = nullptr;
+
 
 Game::Game()
 {}
@@ -43,6 +43,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     player = new GameObject("Assets/SonicTestSprite.png",0.0,0.0);
 }
 
+
 void Game::EventManager()
 {
     SDL_Event event;
@@ -57,6 +58,27 @@ void Game::EventManager()
     }
 }
 
+void Game::render()
+{
+    SDL_RenderClear(renderer);
+    player->ObjectRender();
+    SDL_RenderPresent(renderer);
+}
+
+void Game::update()
+{
+    player->Process(DeltaTime);
+}
+
+void Game::deltaT(double delta)
+{
+    DeltaTime = delta;
+    LAST = SDL_GetPerformanceCounter();
+    NOW = SDL_GetPerformanceCounter();
+    LAST = NOW;
+
+    delta = (NOW - LAST) / (double)SDL_GetPerformanceFrequency();
+}
 
 void Game::clean()
 {

@@ -5,7 +5,6 @@
 #include "SDL2/SDL_image.h"
 #include "GameObject.h"
 #include "TextureManager.h"
-#include "Deltatime.h"
 
 
 
@@ -20,14 +19,19 @@ class Game
         void EventManager();
         void update();
         void render();
+        void deltaT(double delta);
         void clean();
 
         bool running() {return isRunning;}
 
         static SDL_Renderer *renderer;
+        double DeltaTime;
+        
+        
 
     private:
         bool isRunning;
         SDL_Window *window;
+        Uint64 NOW, LAST;
 };
 
