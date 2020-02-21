@@ -1,20 +1,18 @@
 #include "GameObject.h"
 
-float xpos;
-float ypos;
-SDL_Texture* ObjectTexture;
-SDL_Rect srcRect, destRect;
-
-
-
     
-GameObject::GameObject(const char* texturesheet, float x, float y)
+GameObject::GameObject()
 {
-    ObjectTexture = TextureManager::LoadTexture(texturesheet);
-    xpos = x;
-    ypos = y;
+    Ready();
+    ObjectTexture = TextureManager::LoadTexture(TextureDirectory);
 }
 
+void GameObject::Ready()
+{
+    TextureDirectory = "Assets/SonicTestSprite.png";
+    xpos = 0.0;
+    ypos = 0.0;
+}
 void GameObject::Process(double delta)
 {
     xpos++*delta;
