@@ -4,6 +4,7 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "GameObject.h"
+#include "World.h"
 #include "TextureManager.h"
 
 

@@ -11,12 +11,10 @@ public:
    void Process(double delta);
    void ObjectRender();
    void Ready();
-
-private:
-    float xpos;
-    float ypos;
-    SDL_Texture* ObjectTexture;
-    const char* TextureDirectory;
-    SDL_Rect srcRect, destRect;
+   float xpos;
+   float ypos;
+   SDL_Texture* ObjectTexture;
+   const char* TextureDirectory;
+   SDL_Rect srcRect, destRect;
 
 };

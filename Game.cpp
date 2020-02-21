@@ -1,8 +1,8 @@
 #include "Game.h"
 
 
+World* world; 
 
-GameObject* player;
 
 SDL_Renderer* Game::renderer = nullptr;
 
@@ -40,7 +40,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
         isRunning = true;
     }
-    player = new GameObject;
+    world = new World();
+    world->create_world();  
 }
 
 
@@ -61,13 +62,13 @@ void Game::EventManager()
 void Game::render()
 {
     SDL_RenderClear(renderer);
-    player->ObjectRender();
+    world->render_world();
     SDL_RenderPresent(renderer);
 }
 
 void Game::update()
 {
-    player->Process(DeltaTime);
+    world->update_world(DeltaTime);
 }
 
 void Game::deltaT(double delta)
