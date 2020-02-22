@@ -71,14 +71,11 @@ void Game::update()
     world->update_world(DeltaTime);
 }
 
-void Game::deltaT(double delta)
+void Game::deltaT()
 {
-    DeltaTime = delta;
-    LAST = SDL_GetPerformanceCounter();
-    NOW = SDL_GetPerformanceCounter();
     LAST = NOW;
-
-    delta = (NOW - LAST) / (double)SDL_GetPerformanceFrequency();
+    NOW = SDL_GetPerformanceCounter();
+    DeltaTime = (double)((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency() );
 }
 
 void Game::clean()

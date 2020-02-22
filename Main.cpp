@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
         game->EventManager();
         game->update();
         game->render();
+        game->deltaT();
         
 
     }

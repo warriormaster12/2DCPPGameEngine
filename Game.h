@@ -20,19 +20,21 @@ class Game
         void EventManager();
         void update();
         void render();
-        void deltaT(double delta);
+        void deltaT();
         void clean();
 
         bool running() {return isRunning;}
 
         static SDL_Renderer *renderer;
-        double DeltaTime;
+        
         
         
 
     private:
         bool isRunning;
         SDL_Window *window;
-        Uint64 NOW, LAST;
+        Uint64 NOW = SDL_GetPerformanceCounter();
+        Uint64 LAST = 0;
+        double DeltaTime;
 };
 
